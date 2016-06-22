@@ -29,6 +29,7 @@ private slots:
 	void doubleSpinBox_2(double);
 	//void checkBox(void);
 	void en(void);
+	void save(void);
 	void update(void);
 };
 
