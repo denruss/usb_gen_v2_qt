@@ -1,7 +1,7 @@
 #ifndef USB_GEN_V2_QT_H
 #define USB_GEN_V2_QT_H
 
-#include <QMainWindow>
+#include <QtWidgets/QMainWindow>
 #include "ui_usb_gen_v2_qt.h"
 #include <QTimer>
 #include "hidapi.h"

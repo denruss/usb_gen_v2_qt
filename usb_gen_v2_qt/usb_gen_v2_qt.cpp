@@ -1,4 +1,4 @@
-#include "usb_gen_v2_qt.h"
+п»ї#include "usb_gen_v2_qt.h"
 
 unsigned char buf[64];
 unsigned short VendorID = 0x0483;
@@ -12,12 +12,23 @@ usb_gen_v2_qt::usb_gen_v2_qt(QWidget *parent)
 {
 	ui.setupUi(this);
 
+
 	connect(ui.doubleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(doubleSpinBox(double)));
 	connect(ui.doubleSpinBox_2, SIGNAL(valueChanged(double)), this, SLOT(doubleSpinBox_2(double)));
 	//connect(ui.checkBox, SIGNAL(stateChanged(int)), this, SLOT(checkBox()));
 
 	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(en()));
 	connect(ui.pushButton_2, SIGNAL(clicked()), this, SLOT(save()));
+
+	ui.pushButton->setText(tr("On"));
+	ui.pushButton_2->setText(tr("Save"));
+	ui.groupBox->setTitle(tr("Frequency"));
+	ui.groupBox_3->setTitle(tr("Attenuation"));
+	ui.label->setText(tr("MHz"));
+	ui.label_3->setText(tr("dB"));
+	this->setWindowTitle(tr("USB Microwave Generator (25-6000 MHz)"));
+
+
 
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
@@ -56,11 +67,16 @@ void usb_gen_v2_qt::en()
 		buf[3] = 5;
 		buf[4] = 6;
 
-		if (!ui.pushButton->isChecked()) // выключение
+		if (!ui.pushButton->isChecked()) // РІС‹РєР»СЋС‡РµРЅРёРµ
+		{
 			buf[5] = 0;
+			ui.pushButton->setText(tr("On"));
+		}
 		else
+		{
 			buf[5] = 1;
-
+			ui.pushButton->setText(tr("Off"));
+		}
 		hid_write(handle, (const unsigned char*)buf, 64);
 
 	}
@@ -87,13 +103,13 @@ void usb_gen_v2_qt::update()
 	int att_int, enable;
 
     if (handle) {
-        // включаем элементы UI
+        // РІРєР»СЋС‡Р°РµРј СЌР»РµРјРµРЅС‚С‹ UI
         ui.doubleSpinBox->setEnabled(true);
         ui.doubleSpinBox_2->setEnabled(true);
         ui.pushButton->setEnabled(true);
         ui.pushButton_2->setEnabled(true);
 
-        // считываем состояние устройства
+        // СЃС‡РёС‚С‹РІР°РµРј СЃРѕСЃС‚РѕСЏРЅРёРµ СѓСЃС‚СЂРѕР№СЃС‚РІР°
         res = hid_read(handle, buf, 64);
         if (res == -1) 	handle = 0;
 
@@ -101,53 +117,54 @@ void usb_gen_v2_qt::update()
         }
 
     else {
-        // выключаем элементы UI
+        // РІС‹РєР»СЋС‡Р°РµРј СЌР»РµРјРµРЅС‚С‹ UI
         ui.doubleSpinBox->setEnabled(false);
         ui.doubleSpinBox_2->setEnabled(false);
         ui.pushButton->setEnabled(false);
         ui.pushButton_2->setEnabled(false);
 
-        //пробуем открыть
+        //РїСЂРѕР±СѓРµРј РѕС‚РєСЂС‹С‚СЊ
         handle = hid_open(VendorID, ProductID, NULL);
         if (handle)  {
 
             hid_set_nonblocking(handle, 1);
             Sleep(700);
-            // считываем состояние устройства
+            // СЃС‡РёС‚С‹РІР°РµРј СЃРѕСЃС‚РѕСЏРЅРёРµ СѓСЃС‚СЂРѕР№СЃС‚РІР°
             res = hid_read(handle, buf, 64);
 
 
             if (res == -1) 	handle = 0;
-            else {
-                //if (buf[4] == 1) ui.pushButton->setChecked(true); else ui.pushButton->setChecked(false);
+			else {
+				//if (buf[4] == 1) ui.pushButton->setChecked(true); else ui.pushButton->setChecked(false);
 
-                switch (buf[3])
-                {
-                case 0: ui.statusBar->showMessage(tr("Генератор обнаружен. Микросхемы HMC не обнаружены."));
-                    break;
-                case 1: ui.statusBar->showMessage(tr("Генератор обнаружен. HMC833LP6GE не обнаружена."));
-                    break;
-                case 2: ui.statusBar->showMessage(tr("Генератор обнаружен. HMC625LP5E не обнаружена."));
-                    break;
-                case 3: ui.statusBar->showMessage(tr("Генератор обнаружен. Всё хорошо."));
-                    break;
-                default:
-                    break;
-                }
-				// извлекаем частоту
+				switch (buf[3])
+				{
+				case 0: ui.statusBar->showMessage(tr("The generator is detected. Chips HMC not found."));
+					break;
+				case 1: ui.statusBar->showMessage(tr("The generator is detected. HMC833LP6GE not found."));
+					break;
+				case 2: ui.statusBar->showMessage(tr("The generator is detected. HMC625LP5E not found."));
+					break;
+				case 3: ui.statusBar->showMessage(tr("The generator is detected. All is well."));
+					break;
+				default:
+					break;
+				}
+				// РёР·РІР»РµРєР°РµРј С‡Р°СЃС‚РѕС‚Сѓ
 				memcpy(&freq, &buf[4], 4); ui.doubleSpinBox->setValue(freq);
 
-				// извлекаем ослабление
-				memcpy(&att_int, &buf[8], 4); att = ((att_int/2.0) - 31.5);  ui.doubleSpinBox_2->setValue(att);
+				// РёР·РІР»РµРєР°РµРј РѕСЃР»Р°Р±Р»РµРЅРёРµ
+				memcpy(&att_int, &buf[8], 4); att = ((att_int / 2.0) - 31.5);  ui.doubleSpinBox_2->setValue(att);
 
-				// извлекаем вкл/выкл
-				memcpy(&enable, &buf[12], 4); 
-				if (enable == 1) ui.pushButton->setChecked(true); else ui.pushButton->setChecked(false);
+				// РёР·РІР»РµРєР°РµРј РІРєР»/РІС‹РєР»
+				memcpy(&enable, &buf[12], 4);
+				if (enable == 1) { ui.pushButton->setChecked(true); ui.pushButton->setText(tr("Off")); }
+				else { ui.pushButton->setChecked(false); ui.pushButton->setText(tr("On"));	}
 
             }
 
         }
-        else ui.statusBar->showMessage(tr("Генератор не подключён."));
+        else ui.statusBar->showMessage(tr("The generator is not connected."));
 
     }
 }
