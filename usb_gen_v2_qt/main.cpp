@@ -9,12 +9,24 @@ int main(int argc, char *argv[])
 
 	QApplication a(argc, argv);
 
+	int   DefaultLang = 0;
+	QString file_translate;
+
+	//DefaultLang = GetSystemDefaultLangID(); // Узнаём системный язык
+	DefaultLang = GetSystemDefaultUILanguage(); // Узнаём системный язык
 
 
 
 	// Вызываем поддержку перевода
 	QTranslator * qt_translator = new QTranslator;
-	QString file_translate = QApplication::applicationDirPath() + "/lang/ru.qm";
+	
+
+	switch (DefaultLang)
+	{
+		case 1049: file_translate = QApplication::applicationDirPath() + "/lang/ru.qm"; break; // 1049 - русский
+	
+	}
+
 	if (!qt_translator->load(file_translate)) {
 		delete qt_translator;
 	}
