@@ -31,6 +31,7 @@ private slots:
 	void en(void);
 	void save(void);
 	void update(void);
+	void firmware_update(void);
 };
 
 #endif // USB_GEN_V2_QT_H

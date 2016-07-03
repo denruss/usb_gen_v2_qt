@@ -5,6 +5,8 @@ unsigned short VendorID = 0x0483;
 unsigned short ProductID = 0x5750;
 hid_device *handle;
 bool HIDStatus;
+unsigned char verFW[2];
+
 
 
 usb_gen_v2_qt::usb_gen_v2_qt(QWidget *parent)
@@ -19,6 +21,7 @@ usb_gen_v2_qt::usb_gen_v2_qt(QWidget *parent)
 
 	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(en()));
 	connect(ui.pushButton_2, SIGNAL(clicked()), this, SLOT(save()));
+	connect(ui.pushButton_5, SIGNAL(clicked()), this, SLOT(firmware_update()));
 
 	ui.pushButton->setText(tr("On"));
 	ui.pushButton_2->setText(tr("Save"));
@@ -95,11 +98,27 @@ void usb_gen_v2_qt::save()
 }
 
 
+void usb_gen_v2_qt::firmware_update()
+{
+	if (handle) {
+
+		buf[0] = 0; // ID
+		buf[1] = 255; // instructions
+
+		hid_write(handle, (const unsigned char*)buf, 64);
+
+	}
+}
+
+
+
+
+
 void usb_gen_v2_qt::update()
 {
     int res;
 
-	float freq, att;
+	float freq, att, XTAL, R;
 	int att_int, enable;
 
     if (handle) {
@@ -150,6 +169,10 @@ void usb_gen_v2_qt::update()
 				default:
 					break;
 				}
+				// извлекаем версию
+				verFW[0] = buf[0]; verFW[1] = buf[1];
+				ui.label_8->setText(tr("Version FW : ") + QString::number((int)verFW[0], 10).toUpper() + "." + QString::number((int)verFW[1], 10).toUpper());
+
 				// извлекаем частоту
 				memcpy(&freq, &buf[4], 4); ui.doubleSpinBox->setValue(freq);
 
@@ -160,6 +183,12 @@ void usb_gen_v2_qt::update()
 				memcpy(&enable, &buf[12], 4);
 				if (enable == 1) { ui.pushButton->setChecked(true); ui.pushButton->setText(tr("Off")); }
 				else { ui.pushButton->setChecked(false); ui.pushButton->setText(tr("On"));	}
+
+				// извлекаем XTAL
+				memcpy(&XTAL, &buf[16], 4); ui.doubleSpinBox_3->setValue(XTAL);
+
+				// извлекаем R
+				memcpy(&R, &buf[20], 4); ui.spinBox->setValue(R);
 
             }
 
