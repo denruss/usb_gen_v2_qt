@@ -6,6 +6,7 @@ unsigned short ProductID = 0x5750;
 hid_device *handle;
 bool HIDStatus;
 unsigned char verFW[2];
+unsigned char verSW[2] = {1, 7};
 
 
 
@@ -30,7 +31,11 @@ usb_gen_v2_qt::usb_gen_v2_qt(QWidget *parent)
 	ui.label->setText(tr("MHz"));
 	ui.label_3->setText(tr("dB"));
 	this->setWindowTitle(tr("USB Microwave Generator (25-6000 MHz)"));
-
+	ui.label_9->setText(tr("Version SW : ") + QString::number((int)verSW[0], 10).toUpper() + "." + QString::number((int)verSW[1], 10).toUpper());
+	ui.label_8->setText(tr("Version FW : ") );
+	ui.tabWidget->setTabText(0, tr("Control"));
+	ui.tabWidget->setTabText(1, tr("Settings"));
+	ui.pushButton_5->setText(tr("Update FW"));
 
 
 	timer = new QTimer(this);
@@ -127,6 +132,7 @@ void usb_gen_v2_qt::update()
         ui.doubleSpinBox_2->setEnabled(true);
         ui.pushButton->setEnabled(true);
         ui.pushButton_2->setEnabled(true);
+		ui.pushButton_5->setEnabled(true);
 
         // считываем состояние устройства
         res = hid_read(handle, buf, 64);
@@ -141,6 +147,7 @@ void usb_gen_v2_qt::update()
         ui.doubleSpinBox_2->setEnabled(false);
         ui.pushButton->setEnabled(false);
         ui.pushButton_2->setEnabled(false);
+		ui.pushButton_5->setEnabled(false);
 
         //пробуем открыть
         handle = hid_open(VendorID, ProductID, NULL);
