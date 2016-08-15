@@ -8,8 +8,12 @@ const wchar_t Serial[] = L"000000005443";
 hid_device *handle;
 bool flag;
 unsigned char verFW[2];
+<<<<<<< HEAD
 unsigned char verSW[2] = {1, 8};
 
+=======
+unsigned char verSW[2] = {1, 7};
+>>>>>>> origin/master
 
 
 
@@ -51,6 +55,7 @@ usb_gen_v2_qt::usb_gen_v2_qt(QWidget *parent)
 	ui.tabWidget->setTabText(0, tr("Control"));
 	ui.tabWidget->setTabText(1, tr("Settings"));
 	ui.pushButton_5->setText(tr("Update FW"));
+<<<<<<< HEAD
 	ui.pushButton_6->setText(tr("Update SW"));
 
 	ui.groupBox_4->setTitle(tr("Mode"));
@@ -70,6 +75,9 @@ usb_gen_v2_qt::usb_gen_v2_qt(QWidget *parent)
 
 
 	connect(ui.pushButton_6, SIGNAL(clicked()), this, SLOT(MyLink()));
+=======
+
+>>>>>>> origin/master
 
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
@@ -184,8 +192,11 @@ void usb_gen_v2_qt::update()
         ui.pushButton->setEnabled(true);
         ui.pushButton_2->setEnabled(true);
 		ui.pushButton_5->setEnabled(true);
+<<<<<<< HEAD
 		ui.groupBox_4->setEnabled(true);
 		ui.groupBox_5->setEnabled(true);
+=======
+>>>>>>> origin/master
 
         // считываем состояние устройства
         res = hid_read(handle, buf, 64);
@@ -199,8 +210,11 @@ void usb_gen_v2_qt::update()
         ui.pushButton->setEnabled(false);
         ui.pushButton_2->setEnabled(false);
 		ui.pushButton_5->setEnabled(false);
+<<<<<<< HEAD
 		ui.groupBox_4->setEnabled(false);
 		ui.groupBox_5->setEnabled(false);
+=======
+>>>>>>> origin/master
 
         //пробуем открыть
         handle = hid_open(VendorID, ProductID, Serial); //Serial
