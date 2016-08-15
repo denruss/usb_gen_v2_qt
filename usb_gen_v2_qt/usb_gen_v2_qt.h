@@ -4,6 +4,8 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_usb_gen_v2_qt.h"
 #include <QTimer>
+#include <QDesktopServices>
+#include <QUrl>
 #include "hidapi.h"
 
 #include <windows.h>
@@ -27,11 +29,18 @@ private:
 private slots:
 	void doubleSpinBox(double);
 	void doubleSpinBox_2(double);
+
 	//void checkBox(void);
 	void en(void);
 	void save(void);
 	void update(void);
+	void SetMode(void);
+	void SetParam(void);
 	void firmware_update(void);
+	void MyLink(void);
+
 };
+
+
 
 #endif // USB_GEN_V2_QT_H

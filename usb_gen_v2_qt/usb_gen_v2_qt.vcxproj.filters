@@ -82,8 +82,5 @@
     <None Include="ru.ts">
       <Filter>Translation Files</Filter>
     </None>
-    <None Include="usb_gen_v2_qt_ru.ts">
-      <Filter>Translation Files</Filter>
-    </None>
   </ItemGroup>
 </Project>
