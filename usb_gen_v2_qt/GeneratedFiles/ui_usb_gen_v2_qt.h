@@ -199,7 +199,11 @@ public:
         line->setFrameShadow(QFrame::Sunken);
         line_2 = new QFrame(groupBox_5);
         line_2->setObjectName(QStringLiteral("line_2"));
+<<<<<<< HEAD
         line_2->setGeometry(QRect(353, 10, 20, 21));
+=======
+        line_2->setGeometry(QRect(355, 10, 20, 21));
+>>>>>>> origin/master
         line_2->setFrameShape(QFrame::VLine);
         line_2->setFrameShadow(QFrame::Sunken);
         label_15 = new QLabel(groupBox_5);

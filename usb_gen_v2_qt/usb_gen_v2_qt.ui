@@ -70,9 +70,21 @@
       </property>
       <property name="geometry">
        <rect>
+<<<<<<< HEAD
         <x>360</x>
         <y>40</y>
         <width>95</width>
+=======
+<<<<<<< HEAD
+        <x>360</x>
+        <y>40</y>
+        <width>95</width>
+=======
+        <x>325</x>
+        <y>40</y>
+        <width>75</width>
+>>>>>>> origin/master
+>>>>>>> origin/master
         <height>25</height>
        </rect>
       </property>
@@ -92,9 +104,21 @@
       </property>
       <property name="geometry">
        <rect>
+<<<<<<< HEAD
         <x>360</x>
         <y>10</y>
         <width>95</width>
+=======
+<<<<<<< HEAD
+        <x>360</x>
+        <y>10</y>
+        <width>95</width>
+=======
+        <x>325</x>
+        <y>10</y>
+        <width>75</width>
+>>>>>>> origin/master
+>>>>>>> origin/master
         <height>25</height>
        </rect>
       </property>
@@ -111,9 +135,21 @@
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
+<<<<<<< HEAD
         <x>5</x>
         <y>5</y>
         <width>115</width>
+=======
+<<<<<<< HEAD
+        <x>5</x>
+        <y>5</y>
+        <width>115</width>
+=======
+        <x>0</x>
+        <y>5</y>
+        <width>151</width>
+>>>>>>> origin/master
+>>>>>>> origin/master
         <height>61</height>
        </rect>
       </property>
@@ -165,9 +201,21 @@
      <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
        <rect>
+<<<<<<< HEAD
         <x>125</x>
         <y>5</y>
         <width>91</width>
+=======
+<<<<<<< HEAD
+        <x>125</x>
+        <y>5</y>
+        <width>91</width>
+=======
+        <x>160</x>
+        <y>5</y>
+        <width>151</width>
+>>>>>>> origin/master
+>>>>>>> origin/master
         <height>61</height>
        </rect>
       </property>
@@ -416,7 +464,11 @@
       <widget class="Line" name="line_2">
        <property name="geometry">
         <rect>
+<<<<<<< HEAD
          <x>353</x>
+=======
+         <x>355</x>
+>>>>>>> origin/master
          <y>10</y>
          <width>20</width>
          <height>21</height>
