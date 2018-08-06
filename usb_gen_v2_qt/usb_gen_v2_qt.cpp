@@ -8,17 +8,8 @@ const wchar_t Serial[] = L"000000005443";
 hid_device *handle;
 bool flag;
 unsigned char verFW[2];
-<<<<<<< HEAD
-unsigned char verSW[2] = {1, 9};
-
-=======
-<<<<<<< HEAD
 unsigned char verSW[2] = {1, 8};
 
-=======
-unsigned char verSW[2] = {1, 7};
->>>>>>> origin/master
->>>>>>> origin/master
 
 
 
@@ -39,13 +30,7 @@ usb_gen_v2_qt::usb_gen_v2_qt(QWidget *parent)
 	connect(ui.doubleSpinBox_9, SIGNAL(valueChanged(double)), this, SLOT(SetParam(void)));
 	connect(ui.spinBox_2, SIGNAL(valueChanged(int)), this, SLOT(SetParam(void)));
 
-<<<<<<< HEAD
-=======
-
 	//connect(ui.checkBox, SIGNAL(stateChanged(int)), this, SLOT(checkBox()));
->>>>>>> origin/master
-
-
 
 	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(en()));
 	connect(ui.pushButton_2, SIGNAL(clicked()), this, SLOT(save()));
@@ -63,44 +48,22 @@ usb_gen_v2_qt::usb_gen_v2_qt(QWidget *parent)
 	ui.tabWidget->setTabText(0, tr("Control"));
 	ui.tabWidget->setTabText(1, tr("Settings"));
 	ui.pushButton_5->setText(tr("Update FW"));
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
-	ui.pushButton_6->setText(tr("Update SW"));
-
-	ui.groupBox_4->setTitle(tr("Mode"));
-	ui.radioButton->setText(tr("SSG"));
-	ui.radioButton_2->setText(tr("Sweep"));
-	ui.radioButton_3->setText(tr("Hopping"));
 
 	ui.label_12->setText(tr("Begin"));
 	ui.label_11->setText(tr("MHz"));
-	ui.label_13->setText(tr("End"));
+	ui.label_13->setText(tr("Begin"));
 	ui.label_14->setText(tr("MHz"));
-	ui.label_2->setText(tr("MHz"));
-	//ui.label_18->setText(tr("∆f"));
+	ui.label_18->setText(tr("∆f"));
 	ui.label_17->setText(tr("MHz"));
-	//ui.label_15->setText(tr("∆t"));
+	ui.label_15->setText(tr("∆t"));
 	ui.label_16->setText(tr("ms"));
-
-
-	connect(ui.pushButton_6, SIGNAL(clicked()), this, SLOT(MyLink()));
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> origin/master
->>>>>>> origin/master
 
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-	timer->start(300);
-
+	timer->start(200);
 
 
 }
-
 
 usb_gen_v2_qt::~usb_gen_v2_qt()
 {
@@ -110,13 +73,6 @@ usb_gen_v2_qt::~usb_gen_v2_qt()
 void usb_gen_v2_qt::doubleSpinBox(double freq)
 {
 	SetFreq(freq);
-}
-
-
-void usb_gen_v2_qt::MyLink()
-{
-	QUrl url("https://github.com/denruss/usb_gen_v2_qt/tree/master/Win32/Release");
-	QDesktopServices::openUrl(url);
 }
 
 void usb_gen_v2_qt::doubleSpinBox_2(double att)
@@ -195,7 +151,7 @@ void usb_gen_v2_qt::update()
     int res;
 
 	float freq, att, XTAL, R, freq_start, freq_stop, freq_step;
-	int att_int, enable, mode, delay, K, Nint, Nfract;
+	int att_int, enable, mode, delay;
 
 	unsigned char buf[64];
 
@@ -206,20 +162,13 @@ void usb_gen_v2_qt::update()
         ui.pushButton->setEnabled(true);
         ui.pushButton_2->setEnabled(true);
 		ui.pushButton_5->setEnabled(true);
-<<<<<<< HEAD
 		ui.groupBox_4->setEnabled(true);
-		ui.groupBox_5->setEnabled(true);
-=======
-<<<<<<< HEAD
-		ui.groupBox_4->setEnabled(true);
-		ui.groupBox_5->setEnabled(true);
-=======
->>>>>>> origin/master
->>>>>>> origin/master
 
         // считываем состояние устройства
         res = hid_read(handle, buf, 64);
         if (res == -1) 	handle = 0;
+
+
         }
 
     else {
@@ -229,16 +178,7 @@ void usb_gen_v2_qt::update()
         ui.pushButton->setEnabled(false);
         ui.pushButton_2->setEnabled(false);
 		ui.pushButton_5->setEnabled(false);
-<<<<<<< HEAD
 		ui.groupBox_4->setEnabled(false);
-		ui.groupBox_5->setEnabled(false);
-=======
-<<<<<<< HEAD
-		ui.groupBox_4->setEnabled(false);
-		ui.groupBox_5->setEnabled(false);
-=======
->>>>>>> origin/master
->>>>>>> origin/master
 
         //пробуем открыть
         handle = hid_open(VendorID, ProductID, Serial); //Serial
@@ -278,16 +218,9 @@ void usb_gen_v2_qt::update()
 				if (mode == 1) ui.radioButton_2->setChecked(true);
 				if (mode == 2) ui.radioButton_3->setChecked(true);
 
-				
-<<<<<<< HEAD
-				if (mode == 0) { ui.groupBox->setEnabled(true); ui.doubleSpinBox->setEnabled(true);  ui.doubleSpinBox_7->setEnabled(false); ui.doubleSpinBox_8->setEnabled(false); ui.doubleSpinBox_9->setEnabled(false); ui.groupBox_5->setEnabled(false); ui.spinBox_2->setEnabled(false); }
-				if (mode == 1) { ui.groupBox->setEnabled(false); ui.doubleSpinBox->setEnabled(false); ui.doubleSpinBox_7->setEnabled(true); ui.doubleSpinBox_8->setEnabled(true); ui.doubleSpinBox_9->setEnabled(true); ui.groupBox_5->setEnabled(true); ui.spinBox_2->setEnabled(true); }
-				if (mode == 2) { ui.groupBox->setEnabled(false); ui.doubleSpinBox->setEnabled(false); ui.doubleSpinBox_7->setEnabled(true); ui.doubleSpinBox_8->setEnabled(true); ui.doubleSpinBox_9->setEnabled(false); ui.groupBox_5->setEnabled(true); ui.spinBox_2->setEnabled(true); }
-=======
-				if (mode == 0) { ui.doubleSpinBox_7->setEnabled(false); ui.doubleSpinBox_8->setEnabled(false); ui.doubleSpinBox_9->setEnabled(false); ui.groupBox_5->setEnabled(false); ui.spinBox_2->setEnabled(false); }
-				if (mode == 1) { ui.doubleSpinBox_7->setEnabled(true); ui.doubleSpinBox_8->setEnabled(true); ui.doubleSpinBox_9->setEnabled(true); ui.groupBox_5->setEnabled(true); ui.spinBox_2->setEnabled(true); }
-				if (mode == 2) { ui.doubleSpinBox_7->setEnabled(true); ui.doubleSpinBox_8->setEnabled(true); ui.doubleSpinBox_9->setEnabled(false); ui.groupBox_5->setEnabled(true); ui.spinBox_2->setEnabled(true); }
->>>>>>> origin/master
+				if (mode == 0) { ui.doubleSpinBox_7->setEnabled(false); ui.doubleSpinBox_8->setEnabled(false); ui.doubleSpinBox_9->setEnabled(false);	 ui.groupBox_5->setEnabled(false); ui.spinBox_2->setEnabled(false); }
+				else { ui.doubleSpinBox_7->setEnabled(true); ui.doubleSpinBox_8->setEnabled(true); ui.doubleSpinBox_9->setEnabled(true); ui.groupBox_5->setEnabled(true); ui.spinBox_2->setEnabled(true); }
+
 
 				// извлекаем частоту
 				memcpy(&freq, &buf[4], 4);  ui.doubleSpinBox->setValue(freq);
@@ -317,11 +250,7 @@ void usb_gen_v2_qt::update()
 				memcpy(&freq_step, &buf[32], 4); ui.doubleSpinBox_9->setValue(freq_step);
 
 				// извлекаем шаг по времени для ГКЧ
-				delay = (int)buf[36]; ui.spinBox_2->setValue(delay);
-
-				// извлекаем K
-				//memcpy(&K, &buf[37], 4); ui.label_20->setText("K=0x" + QString("%1").arg(K, 1, 16, QLatin1Char('0')));
-
+				memcpy(&delay, &buf[36], 4); ui.spinBox_2->setValue(delay);
 
 				flag = 1;
 
@@ -362,16 +291,10 @@ void usb_gen_v2_qt::SetMode(void)
 			if (ui.radioButton_3->isChecked()) mode = 2;
 
 
-<<<<<<< HEAD
-			if (mode == 0) { ui.groupBox->setEnabled(true); ui.doubleSpinBox->setEnabled(true);  ui.doubleSpinBox_7->setEnabled(false); ui.doubleSpinBox_8->setEnabled(false); ui.doubleSpinBox_9->setEnabled(false); ui.groupBox_5->setEnabled(false); ui.spinBox_2->setEnabled(false); }
-			if (mode == 1) { ui.groupBox->setEnabled(false); ui.doubleSpinBox->setEnabled(false); ui.doubleSpinBox_7->setEnabled(true); ui.doubleSpinBox_8->setEnabled(true); ui.doubleSpinBox_9->setEnabled(true); ui.groupBox_5->setEnabled(true); ui.spinBox_2->setEnabled(true); }
-			if (mode == 2) { ui.groupBox->setEnabled(false); ui.doubleSpinBox->setEnabled(false); ui.doubleSpinBox_7->setEnabled(true); ui.doubleSpinBox_8->setEnabled(true); ui.doubleSpinBox_9->setEnabled(false); ui.groupBox_5->setEnabled(true); ui.spinBox_2->setEnabled(true); }
-=======
-			if (mode == 0) { ui.doubleSpinBox_7->setEnabled(false); ui.doubleSpinBox_8->setEnabled(false); ui.doubleSpinBox_9->setEnabled(false); ui.groupBox_5->setEnabled(false); ui.spinBox_2->setEnabled(false); }
-			if (mode == 1) { ui.doubleSpinBox_7->setEnabled(true); ui.doubleSpinBox_8->setEnabled(true); ui.doubleSpinBox_9->setEnabled(true); ui.groupBox_5->setEnabled(true); ui.spinBox_2->setEnabled(true); }
-			if (mode == 2) { ui.doubleSpinBox_7->setEnabled(true); ui.doubleSpinBox_8->setEnabled(true); ui.doubleSpinBox_9->setEnabled(false); ui.groupBox_5->setEnabled(true); ui.spinBox_2->setEnabled(true); }
->>>>>>> origin/master
+			if (mode == 0) { ui.doubleSpinBox_7->setEnabled(false); ui.doubleSpinBox_8->setEnabled(false); ui.doubleSpinBox_9->setEnabled(false);	 ui.groupBox_5->setEnabled(false); ui.spinBox_2->setEnabled(false); }
+			else { ui.doubleSpinBox_7->setEnabled(true); ui.doubleSpinBox_8->setEnabled(true); ui.doubleSpinBox_9->setEnabled(true); ui.groupBox_5->setEnabled(true); ui.spinBox_2->setEnabled(true);
 
+		}
 	
 		buf[0] = 0; // ID
 		buf[1] = 5; // instructions

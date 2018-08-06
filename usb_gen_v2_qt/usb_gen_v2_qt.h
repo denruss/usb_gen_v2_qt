@@ -4,8 +4,6 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_usb_gen_v2_qt.h"
 #include <QTimer>
-#include <QDesktopServices>
-#include <QUrl>
 #include "hidapi.h"
 
 #include <windows.h>
@@ -37,7 +35,7 @@ private slots:
 	void SetMode(void);
 	void SetParam(void);
 	void firmware_update(void);
-	void MyLink(void);
+
 
 };
 

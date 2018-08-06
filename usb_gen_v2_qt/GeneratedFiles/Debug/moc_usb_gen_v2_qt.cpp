@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_usb_gen_v2_qt_t {
-    QByteArrayData data[11];
-    char stringdata0[100];
+    QByteArrayData data[10];
+    char stringdata0[93];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,13 +38,12 @@ QT_MOC_LITERAL(5, 48, 4), // "save"
 QT_MOC_LITERAL(6, 53, 6), // "update"
 QT_MOC_LITERAL(7, 60, 7), // "SetMode"
 QT_MOC_LITERAL(8, 68, 8), // "SetParam"
-QT_MOC_LITERAL(9, 77, 15), // "firmware_update"
-QT_MOC_LITERAL(10, 93, 6) // "MyLink"
+QT_MOC_LITERAL(9, 77, 15) // "firmware_update"
 
     },
     "usb_gen_v2_qt\0doubleSpinBox\0\0"
     "doubleSpinBox_2\0en\0save\0update\0SetMode\0"
-    "SetParam\0firmware_update\0MyLink"
+    "SetParam\0firmware_update"
 };
 #undef QT_MOC_LITERAL
 
@@ -54,7 +53,7 @@ static const uint qt_meta_data_usb_gen_v2_qt[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -62,20 +61,18 @@ static const uint qt_meta_data_usb_gen_v2_qt[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   59,    2, 0x08 /* Private */,
-       3,    1,   62,    2, 0x08 /* Private */,
-       4,    0,   65,    2, 0x08 /* Private */,
-       5,    0,   66,    2, 0x08 /* Private */,
-       6,    0,   67,    2, 0x08 /* Private */,
-       7,    0,   68,    2, 0x08 /* Private */,
-       8,    0,   69,    2, 0x08 /* Private */,
-       9,    0,   70,    2, 0x08 /* Private */,
-      10,    0,   71,    2, 0x08 /* Private */,
+       1,    1,   54,    2, 0x08 /* Private */,
+       3,    1,   57,    2, 0x08 /* Private */,
+       4,    0,   60,    2, 0x08 /* Private */,
+       5,    0,   61,    2, 0x08 /* Private */,
+       6,    0,   62,    2, 0x08 /* Private */,
+       7,    0,   63,    2, 0x08 /* Private */,
+       8,    0,   64,    2, 0x08 /* Private */,
+       9,    0,   65,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Double,    2,
     QMetaType::Void, QMetaType::Double,    2,
-    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -100,7 +97,6 @@ void usb_gen_v2_qt::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 5: _t->SetMode(); break;
         case 6: _t->SetParam(); break;
         case 7: _t->firmware_update(); break;
-        case 8: _t->MyLink(); break;
         default: ;
         }
     }
@@ -131,13 +127,13 @@ int usb_gen_v2_qt::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 9;
+        _id -= 8;
     }
     return _id;
 }

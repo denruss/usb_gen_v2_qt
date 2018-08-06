@@ -85,7 +85,7 @@
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;d:\Projects\MSVC\usb_gen_v2_qt\usb_gen_v2_qt\Debug\hidapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;c:\Projects\MSVC\usb_gen_v2_qt\usb_gen_v2_qt\Debug\hidapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -235,15 +235,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-<<<<<<< HEAD
       <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="$(DefaultQtVersion)" Qt5Version_x0020_x64="5.7.0_x64" MocOptions="" QtVersion_x0020_Win32="4.8.5" />
-=======
-<<<<<<< HEAD
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="$(DefaultQtVersion)" Qt5Version_x0020_x64="5.7.0_x64" MocOptions="" QtVersion_x0020_Win32="4.8.5" />
-=======
-      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="5.7.0" Qt5Version_x0020_x64="5.7.0_x64" MocOptions="" QtVersion_x0020_Win32="4.8.5" />
->>>>>>> origin/master
->>>>>>> origin/master
     </VisualStudio>
   </ProjectExtensions>
 </Project>
